@@ -3,10 +3,11 @@ using System.Collections;
 
 public class spot : MonoBehaviour {
 
-    private bool turnoff = true;
+    public bool turnoff = true;
     
 
     public CircleCollider2D sopted;
+    public float radius;
 
     // Use this for initialization
     void Start () {
@@ -15,7 +16,7 @@ public class spot : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+        radius = sopted.radius;
 	}
 
     void OnTriggerStay2D(Collider2D dmg)
@@ -42,7 +43,7 @@ public class spot : MonoBehaviour {
 
         if (sopted.radius <1 && turnoff==false)
         {
-            Destroy(gameObject);
+           // Destroy(gameObject);
 
 
 

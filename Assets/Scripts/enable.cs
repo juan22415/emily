@@ -5,10 +5,16 @@ public class enable : MonoBehaviour
 {
 
     
+    
     public GameObject spotlight;
+    
+    private bool checkradius = false;
+
+    public float timer;
     // Use this for initialization
     void Start()
     {
+        
         spotlight.SetActive(false);
     }
 
@@ -16,7 +22,15 @@ public class enable : MonoBehaviour
     void Update()
     {
 
-
+        if (checkradius)
+        {
+            timer += Time.deltaTime;
+        }
+       
+        if (timer>2.5f)
+        {
+            Destroy(gameObject);
+        }
 
     }
 
@@ -26,9 +40,17 @@ public class enable : MonoBehaviour
         {
 
             spotlight.SetActive(true);
+            checkradius = true;
+
+
+
             
+
+
 
         }
     }
+
+   
 
 }
