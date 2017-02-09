@@ -111,8 +111,8 @@ public class pickup : MonoBehaviour
             Destroy(dmg.gameObject);
 
             pickedup++;
-        
 
+            ScoreManager.Instance.Score += 100;
             corazon.enabled = false;
             source.PlayOneShot(tp);
 
@@ -123,8 +123,8 @@ public class pickup : MonoBehaviour
             Destroy(dmg.gameObject);
 
             pickedup++;
-        
 
+            ScoreManager.Instance.Score += 100;
             oso.enabled = false;
 
             source.PlayOneShot(tp);
@@ -133,7 +133,7 @@ public class pickup : MonoBehaviour
         if (dmg.gameObject.tag == "retrato")
         {
             Destroy(dmg.gameObject);
-
+            ScoreManager.Instance.Score += 100;
             pickedup++;
          
 
@@ -147,8 +147,8 @@ public class pickup : MonoBehaviour
             Destroy(dmg.gameObject);
 
             pickedup++;
-         
 
+            ScoreManager.Instance.Score += 100;
             flor.enabled = false;
             source.PlayOneShot(tp);
 
