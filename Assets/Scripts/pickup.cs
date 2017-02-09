@@ -2,11 +2,23 @@
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class pickup : MonoBehaviour
 {
+  
+    public Text tiempo;
+ 
+    public float time;
+    public int minutos;
+    public bool levelComplete;
+    public string highscorePos;
 
-    
+
+
+
+    public int temp;
+
     public int pickedup=0;
     public AudioClip tp;
     public AudioClip cp;
@@ -24,12 +36,27 @@ public class pickup : MonoBehaviour
     void Start()
     {
        source = GetComponent<AudioSource>();
+
+        time = 0;
+        temp = 0;
+     
+        tiempo.text = "Tiempo:00:00" + time;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(pickedup==5)
+        time = time + Time.deltaTime;
+     
+        tiempo.text = "Tiempo:00:" + Mathf.RoundToInt(time);
+        if (time == 60)
+        {
+            minutos = 1;
+            time = 0;
+         
+        }
+
+        if (pickedup==5)
         {
             Destroy(puerta);
         }
@@ -64,7 +91,10 @@ public class pickup : MonoBehaviour
         {
             Destroy(dmg.gameObject);
 
+            ScoreManager.Instance.Score += 100;
+
             pickedup++;
+          
 
             alma.enabled = false;
 
@@ -81,6 +111,7 @@ public class pickup : MonoBehaviour
             Destroy(dmg.gameObject);
 
             pickedup++;
+        
 
             corazon.enabled = false;
             source.PlayOneShot(tp);
@@ -92,6 +123,7 @@ public class pickup : MonoBehaviour
             Destroy(dmg.gameObject);
 
             pickedup++;
+        
 
             oso.enabled = false;
 
@@ -103,6 +135,7 @@ public class pickup : MonoBehaviour
             Destroy(dmg.gameObject);
 
             pickedup++;
+         
 
             retrato.enabled = false;
             source.PlayOneShot(tp);
@@ -114,6 +147,7 @@ public class pickup : MonoBehaviour
             Destroy(dmg.gameObject);
 
             pickedup++;
+         
 
             flor.enabled = false;
             source.PlayOneShot(tp);
@@ -121,10 +155,9 @@ public class pickup : MonoBehaviour
 
         }
 
-
+       
 
     }
-
-
+   
 }
-    
+
