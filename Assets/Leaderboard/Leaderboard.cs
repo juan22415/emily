@@ -5,10 +5,41 @@ using UnityEngine;
 
 public class Leaderboard : MonoBehaviour
 {
-    public List<PlayerData> leaderboard;
+    public string leaderboardKey;
+    public LeaderboardData data;
 
-    public void CreatePlayerData(string name)
+    private void Awake()
     {
-        leaderboard.Add(new PlayerData(name));
+        data = LoadLeaderboard();
+    }
+
+    private void Start()
+    {
+        data.players.Add(new PlayerData ("Manuela", ScoreManager.Instance.Score));
+    }
+
+    private LeaderboardData LoadLeaderboard()
+    {
+        string jsonLeaderboard = PlayerPrefs.GetString(leaderboardKey, null);
+        if (string.IsNullOrEmpty(jsonLeaderboard))
+            return GenerateNewLeaderboard();
+        else
+            return ParseLeaderboard(jsonLeaderboard);
+    }
+
+    private LeaderboardData GenerateNewLeaderboard()
+    {
+        return new LeaderboardData();
+    }
+
+    private LeaderboardData ParseLeaderboard(string jsonLeaderboard)
+    {
+        return JsonUtility.FromJson<LeaderboardData>(jsonLeaderboard);
+    }
+
+    private void SaveLeaderboard()
+    {
+        string jsonLeaderboard = JsonUtility.ToJson(data);
+        PlayerPrefs.SetString(leaderboardKey, jsonLeaderboard);
     }
 }

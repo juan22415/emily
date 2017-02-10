@@ -1,18 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
 
 [Serializable]
 public class PlayerData 
 {
-    public string playerName;
+    public string name;
     public int score;
-    ScoreManager scriptscore;
+   
 
-    public PlayerData(string name)
+    public PlayerData(string name, int score)
     {
-        playerName = name;
-        Debug.Log(score);
+        this.name = name;
+        this.score = score;
     }
 
 }
